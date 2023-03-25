@@ -95,8 +95,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/00/fc/83398402a47222e4e36a5a6b92d7539f83e13d3ec3bab342483666386116/marisa-trie-0.7.8.tar.gz",
-                    "sha256": "aee3de5f2836074cfd803f1caf16f68390f262ef09cd7dc7d0e8aee9b6878643",
+                    "url": "https://files.pythonhosted.org/packages/50/34/6e4e981487bac2146a16fba07be2702399a610593d009788d8b715dd504f/marisa-trie-0.8.0.tar.gz",
+                    "sha256": "3d019d17b0d7f62d6e6d7bd05236d8252624ea1c140beb8bf9c6eeff38b3c707",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "marisa-trie"
