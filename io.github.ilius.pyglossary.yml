@@ -82,6 +82,7 @@ modules:
         tag: 4.5.0
         commit: 2433ff5a84aed509e11db236eb1a68e2f35ea447
         x-checker-data:
+          is-main-source: true
           type: antiya
           project-id: 58943
           tag-pattern: $version
