@@ -1,6 +1,6 @@
 app-id: io.github.ilius.pyglossary
 runtime: org.gnome.Platform
-runtime-version: "44"
+runtime-version: '44'
 sdk: org.gnome.Sdk
 command: pyglossary
 
@@ -8,40 +8,41 @@ finish-args:
   - --socket=x11
   - --share=ipc
   - --talk-name=org.gtk.vfs.*
+  - --filesystem=xdg-run/gvfsd
 
 modules:
   - name: lzo
     config-opts:
-      - "--enable-shared"
-      - "--disable-static"
+      - --enable-shared
+      - --disable-static
     cleanup:
       - /include
       - /share/doc
-      - "*.la"
+      - '*.la'
       - /lib/*.so
     sources:
       - type: archive
-        url: "https://www.oberhumer.com/opensource/lzo/download/lzo-2.10.tar.gz"
+        url: https://www.oberhumer.com/opensource/lzo/download/lzo-2.10.tar.gz
         sha256: c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
         x-checker-data:
-          type: antiya
+          type: anitya
           project-id: 1868
-          url-pattern: https://www.oberhumer.com/opensource/lzo/download/lzo-$version.tar.gz
+          url-template: https://www.oberhumer.com/opensource/lzo/download/lzo-$version.tar.gz
 
   - name: xapian-core
     config-opts:
-      - "--disable-sse"
-      - "--disable-backend-chert"
-      - "--disable-backend-remote"
-      - "--disable-documentation"
+      - --disable-sse
+      - --disable-backend-chert
+      - --disable-backend-remote
+      - --disable-documentation
     sources:
       - type: archive
-        sha256: 196ddbb4ad10450100f0991a599e4ed944cbad92e4a6fe813be6dce160244b77
-        url: "https://mirror.download.kiwix.org/dev/kiwix-build/xapian-core-1.4.18.tar.xz"
+        sha256: 05884af00b06702ce486057d62a3bfbe6606cf965ada0f5ea570b328a2fa1ea8
+        url: https://mirror.download.kiwix.org/dev/kiwix-build/xapian-core-1.4.22.tar.xz
         x-checker-data:
-          type: antiya
-          project-id: 20193
-          url-pattern: https://mirror.download.kiwix.org/dev/kiwix-build/xapian-core-$version.tar.xz
+          type: anitya
+          project-id: 15919
+          url-template: https://mirror.download.kiwix.org/dev/kiwix-build/xapian-core-$version.tar.xz
 
   - name: libzim
     buildsystem: meson
@@ -56,12 +57,12 @@ modules:
     sources:
       - type: git
         url: https://github.com/openzim/libzim.git
-        tag: 8.1.0
-        commit: 9bc584edd178492f2bc8dc2a43889319980e6564
+        tag: 8.2.0
+        commit: 38f67fb7f68c0e150f8494895265566aecc60cce
         x-checker-data:
-          type: antiya
+          type: anitya
           project-id: 20193
-          tag-pattern: $version
+          tag-template: $version
 
   - name: pyglossary
     buildsystem: simple
@@ -69,28 +70,24 @@ modules:
       - python3 setup.py build
       - python3 setup.py install "--prefix=${FLATPAK_DEST}"
 
-      - desktop-file-edit --set-key=Exec --set-value="pyglossary --ui=gtk %U" --set-icon=${FLATPAK_ID} pkg/pyglossary.desktop
+      - desktop-file-edit --set-key=Exec --set-value="pyglossary --ui=gtk %U" --set-icon=${FLATPAK_ID}
+        pkg/pyglossary.desktop
       - install -Dm644 pkg/pyglossary.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 io.github.ilius.pyglossary.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
-      - install -Dm644 pyglossary.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
+      - install -Dm644 res/pyglossary.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
     modules:
       # flatpak-pip-generator --runtime org.gnome.Sdk//43 --checker-data lxml beautifulsoup4 PyICU PyYAML marisa-trie libzim python-lzo html5li prompt-toolkit
       - python3-modules.json
     sources:
       - type: git
         url: https://github.com/ilius/pyglossary.git
-        tag: 4.5.0
-        commit: 2433ff5a84aed509e11db236eb1a68e2f35ea447
+        tag: 4.6.1
+        commit: 5f6ebd62e199e518b9a865a2b91d11a7c18fb2c2
         x-checker-data:
-          type: antiya
+          is-main-source: true
+          type: anitya
           project-id: 58943
-          tag-pattern: $version
+          tag-template: $version
 
       - type: file
         path: io.github.ilius.pyglossary.metainfo.xml
-
-        # Keep until the next upstream release
-      - type: file
-        url: https://github.com/ilius/pyglossary/raw/89aa65d93be76e5192f7c3787b5bfa0f36251dd7/res/pyglossary.svg
-        dest-filename: pyglossary.svg
-        sha256: 3feb2ee117d512dec5aef0b1fb11ba2e27476bf1e5e283c7c85950c8be4f0deb
