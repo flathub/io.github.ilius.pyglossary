@@ -24,7 +24,7 @@
   <url type="homepage">https://github.com/ilius/pyglossary</url>
   <url type="bugtracker">https://github.com/ilius/pyglossary/issues/</url>
 
-  <content_rating type="oars-1.1" />
+  <content_rating type="oars-1.1"/>
 
   <screenshots>
     <screenshot type="default">
@@ -34,33 +34,33 @@
   </screenshots>
 
   <releases>
-    <release version="4.6.1" date="2023-03-10" />
-    <release version="4.6.0" date="2023-03-07" />
-    <release version="4.5.0" date="2022-02-05" />
-    <release version="4.4.1" date="2022-01-25" />
-    <release version="4.4.0" date="2022-01-24" />
-    <release version="4.3.0" date="2022-01-15" />
-    <release version="4.2.1" date="2021-12-26" />
-    <release version="4.2.0" date="2021-12-20" />
-    <release version="4.1.0" date="2021-12-01" />
-    <release version="4.0.9" date="2020-11-23" />
-    <release version="4.0.8" date="2020-11-14" />
-    <release version="4.0.7" date="2020-11-11" />
-    <release version="4.0.6" date="2020-11-01" />
-    <release version="4.0.5" date="2020-10-31" />
-    <release version="4.0.4" date="2020-10-30" />
-    <release version="4.0.3" date="2020-10-29" />
-    <release version="4.0.2" date="2020-10-26" />
-    <release version="4.0.1" date="2020-10-25" />
-    <release version="4.0.0" date="2020-10-24" />
-    <release version="3.3.0" date="2020-05-21" />
-    <release version="3.2.1" date="2019-06-22" />
-    <release version="3.2.0" date="2019-03-05" />
-    <release version="3.1.0" date="2018-06-17" />
-    <release version="3.0.4" date="2016-11-07" />
-    <release version="3.0.3" date="2016-07-02" />
-    <release version="3.0.2" date="2016-06-24" />
-    <release version="3.0.1" date="2016-06-17" />
-    <release version="3.0.0" date="2016-06-09" />
+    <release version="4.6.1" date="2023-03-10"/>
+    <release version="4.6.0" date="2023-03-07"/>
+    <release version="4.5.0" date="2022-02-05"/>
+    <release version="4.4.1" date="2022-01-25"/>
+    <release version="4.4.0" date="2022-01-24"/>
+    <release version="4.3.0" date="2022-01-15"/>
+    <release version="4.2.1" date="2021-12-26"/>
+    <release version="4.2.0" date="2021-12-20"/>
+    <release version="4.1.0" date="2021-12-01"/>
+    <release version="4.0.9" date="2020-11-23"/>
+    <release version="4.0.8" date="2020-11-14"/>
+    <release version="4.0.7" date="2020-11-11"/>
+    <release version="4.0.6" date="2020-11-01"/>
+    <release version="4.0.5" date="2020-10-31"/>
+    <release version="4.0.4" date="2020-10-30"/>
+    <release version="4.0.3" date="2020-10-29"/>
+    <release version="4.0.2" date="2020-10-26"/>
+    <release version="4.0.1" date="2020-10-25"/>
+    <release version="4.0.0" date="2020-10-24"/>
+    <release version="3.3.0" date="2020-05-21"/>
+    <release version="3.2.1" date="2019-06-22"/>
+    <release version="3.2.0" date="2019-03-05"/>
+    <release version="3.1.0" date="2018-06-17"/>
+    <release version="3.0.4" date="2016-11-07"/>
+    <release version="3.0.3" date="2016-07-02"/>
+    <release version="3.0.2" date="2016-06-24"/>
+    <release version="3.0.1" date="2016-06-17"/>
+    <release version="3.0.0" date="2016-06-09"/>
   </releases>
 </component>
