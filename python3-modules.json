@@ -107,8 +107,14 @@
         {
             "name": "python3-libzim",
             "buildsystem": "simple",
+            "build-options": {
+                "env": [
+                    "DONT_DOWNLOAD_LIBZIM=1",
+                    "USE_SYSTEM_LIBZIM=1"
+                ]
+            },
             "build-commands": [
-                "DONT_DOWNLOAD_LIBZIM=1 pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"libzim\" --no-build-isolation"
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"libzim\" --no-build-isolation"
             ],
             "sources": [
                 {
