@@ -109,7 +109,7 @@
             "buildsystem": "simple",
             "build-options": {
                 "env": {
-                    "DONT_DOWNLOAD_LIBZIM": true
+                    "DONT_DOWNLOAD_LIBZIM": 1
                 }
             },
             "build-commands": [
