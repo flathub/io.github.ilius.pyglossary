@@ -5,7 +5,8 @@ sdk: org.gnome.Sdk
 command: pyglossary
 
 finish-args:
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --share=ipc
   - --talk-name=org.gtk.vfs.*
   - --filesystem=xdg-run/gvfsd
