@@ -39,11 +39,11 @@ modules:
     sources:
       - type: archive
         sha256: 05884af00b06702ce486057d62a3bfbe6606cf965ada0f5ea570b328a2fa1ea8
-        url: https://mirror.download.kiwix.org/dev/kiwix-build/xapian-core-1.4.22.tar.xz
+        url: https://oligarchy.co.uk/xapian/1.4.24/xapian-core-1.4.22.tar.xz
         x-checker-data:
           type: anitya
           project-id: 15919
-          url-template: https://mirror.download.kiwix.org/dev/kiwix-build/xapian-core-$version.tar.xz
+          url-template: https://oligarchy.co.uk/xapian/$version/xapian-core-$version.tar.xz
 
   - name: libzim
     buildsystem: meson
