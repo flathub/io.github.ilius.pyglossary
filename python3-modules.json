@@ -12,8 +12,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/06/5a/e11cad7b79f2cf3dd2ff8f81fa8ca667e7591d3d8451768589996b65dec1/lxml-4.9.2.tar.gz",
-                    "sha256": "2455cfaeb7ac70338b3257f41e21f0724f4b5b0c0e7702da67ee6c3640835b67",
+                    "url": "https://files.pythonhosted.org/packages/63/f7/ffbb6d2eb67b80a45b8a0834baa5557a14a5ffce0979439e7cd7f0c4055b/lxml-5.2.2.tar.gz",
+                    "sha256": "bb2dc4898180bea79863d5487e5f9c7c34297414bad54bcd0f0852aee9cfdb87",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "lxml"
@@ -30,8 +30,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/57/f4/a69c20ee4f660081a7dedb1ac57f29be9378e04edfcb90c526b923d4bebc/beautifulsoup4-4.12.2-py3-none-any.whl",
-                    "sha256": "bd2520ca0d9d7d12694a53d44ac482d181b4ec1888909b035a3dbf40d0f57d4a",
+                    "url": "https://files.pythonhosted.org/packages/b1/fe/e8c672695b37eecc5cbf43e1d0638d88d66ba3a44c4d321c796f4e59167f/beautifulsoup4-4.12.3-py3-none-any.whl",
+                    "sha256": "b80878c9f40111313e55da8ba20bdba06d8fa3969fc68304167741bbf9e082ed",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "beautifulsoup4",
@@ -40,8 +40,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/49/37/673d6490efc51ec46d198c75903d99de59baffdd47aea3d071b80a9e4e89/soupsieve-2.4.1-py3-none-any.whl",
-                    "sha256": "1c1bfee6819544a3447586c889157365a27e10d88cde3ad3da0cf0ddf646feb8",
+                    "url": "https://files.pythonhosted.org/packages/4c/f3/038b302fdfbe3be7da016777069f26ceefe11a681055ea1f7817546508e3/soupsieve-2.5-py3-none-any.whl",
+                    "sha256": "eaa337ff55a1579b6549dc679565eac1e3d000563bcb1c8ab0d0fefbc0c2cdc7",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "soupsieve",
@@ -59,8 +59,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/03/1b/800fce0236be0b8a99b3ccbb797786dd178028960b3fd65544e2d8bad5ac/PyICU-2.11.tar.gz",
-                    "sha256": "3ab531264cfe9132b3d2ac5d708da9a4649d25f6e6813730ac88cf040a08a844",
+                    "url": "https://files.pythonhosted.org/packages/60/b8/1540a0a0cd74aa878749d442e19916df946e3b187c9965a991ddc77cc39c/PyICU-2.13.1.tar.gz",
+                    "sha256": "d4919085eaa07da12bade8ee721e7bbf7ade0151ca0f82946a26c8f4b98cdceb",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "PyICU"
@@ -77,8 +77,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/36/2b/61d51a2c4f25ef062ae3f74576b01638bebad5e045f747ff12643df63844/PyYAML-6.0.tar.gz",
-                    "sha256": "68fb519c14306fec9720a2a5b45bc9f0c8d1b9c72adf45c37baedfcd949c35a2",
+                    "url": "https://files.pythonhosted.org/packages/cd/e5/af35f7ea75cf72f2cd079c95ee16797de7cd71f29ea7c68ae5ce7be1eda0/PyYAML-6.0.1.tar.gz",
+                    "sha256": "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "PyYAML"
@@ -95,8 +95,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/50/34/6e4e981487bac2146a16fba07be2702399a610593d009788d8b715dd504f/marisa-trie-0.8.0.tar.gz",
-                    "sha256": "3d019d17b0d7f62d6e6d7bd05236d8252624ea1c140beb8bf9c6eeff38b3c707",
+                    "url": "https://files.pythonhosted.org/packages/ff/3b/e3b9e08c393acc474e7a60df6f5e180af103ad25b0c29cee3ce2564447eb/marisa_trie-1.2.0.tar.gz",
+                    "sha256": "fedfc67497f8aa2757756b5cf493759f245d321fb78914ce125b6d75daa89b5f",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "marisa-trie"
@@ -119,8 +119,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/45/1a/129c826240f7965173f3c66cfc31aa3da97e4a3eb667572bb31a8cb3d9d2/libzim-3.1.0.tar.gz",
-                    "sha256": "035e48adc46d3d631ca295409f64af34ac25213b8ab18707c2df3507e334b361",
+                    "url": "https://files.pythonhosted.org/packages/ba/4e/cba68304797819e1a9da6773750ab3a236ba5a03b30b9374462b1a2fd9d2/libzim-3.4.0.tar.gz",
+                    "sha256": "c363de9d0340e657c8ec84088a199e189aeeae202ad81ffce3028285164202af",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "libzim"
@@ -184,8 +184,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/87/3f/1f5a0ff475ae6481f4b0d45d4d911824d3218b94ee2a97a8cb84e5569836/prompt_toolkit-3.0.38-py3-none-any.whl",
-                    "sha256": "45ea77a2f7c60418850331366c81cf6b5b9cf4c7fd34616f733c5427e6abbb1f",
+                    "url": "https://files.pythonhosted.org/packages/e8/23/22750c4b768f09386d1c3cc4337953e8936f48a888fa6dddfb669b2c9088/prompt_toolkit-3.0.47-py3-none-any.whl",
+                    "sha256": "0d7bfa67001d5e39d02c224b663abc33687405033a8c422d0d675a5a13361d10",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "prompt_toolkit",
@@ -194,8 +194,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/20/f4/c0584a25144ce20bfcf1aecd041768b8c762c1eb0aa77502a3f0baa83f11/wcwidth-0.2.6-py2.py3-none-any.whl",
-                    "sha256": "795b138f6875577cd91bba52baf9e445cd5118fd32723b460e30a0af30ea230e",
+                    "url": "https://files.pythonhosted.org/packages/fd/84/fd2ba7aafacbad3c4201d395674fc6348826569da3c0937e75505ead3528/wcwidth-0.2.13-py2.py3-none-any.whl",
+                    "sha256": "3da69048e4540d84af32131829ff948f1e022c1c6bdb8d6102117aac784f6859",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "wcwidth",
