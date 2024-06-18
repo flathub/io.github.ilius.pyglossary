@@ -58,8 +58,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/openzim/libzim.git
-        tag: 8.2.0
-        commit: 38f67fb7f68c0e150f8494895265566aecc60cce
+        tag: 9.2.1
+        commit: 0cdf6f63656b11d6decb1d90299f0d8c0998946d
         x-checker-data:
           type: anitya
           project-id: 20193
@@ -82,8 +82,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ilius/pyglossary.git
-        tag: 4.6.1
-        commit: 5f6ebd62e199e518b9a865a2b91d11a7c18fb2c2
+        tag: 4.7.0
+        commit: b41161d3f38a7e6523d315f4b8555083ef196e71
         x-checker-data:
           is-main-source: true
           type: anitya
