@@ -12,8 +12,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/63/f7/ffbb6d2eb67b80a45b8a0834baa5557a14a5ffce0979439e7cd7f0c4055b/lxml-5.2.2.tar.gz",
-                    "sha256": "bb2dc4898180bea79863d5487e5f9c7c34297414bad54bcd0f0852aee9cfdb87",
+                    "url": "https://files.pythonhosted.org/packages/e7/6b/20c3a4b24751377aaa6307eb230b66701024012c29dd374999cc92983269/lxml-5.3.0.tar.gz",
+                    "sha256": "4e109ca30d1edec1ac60cdbe341905dc3b8f55b16855e03a54aaf59e51ec8c6f",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "lxml"
@@ -40,8 +40,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/4c/f3/038b302fdfbe3be7da016777069f26ceefe11a681055ea1f7817546508e3/soupsieve-2.5-py3-none-any.whl",
-                    "sha256": "eaa337ff55a1579b6549dc679565eac1e3d000563bcb1c8ab0d0fefbc0c2cdc7",
+                    "url": "https://files.pythonhosted.org/packages/d1/c2/fe97d779f3ef3b15f05c94a2f1e3d21732574ed441687474db9d342a7315/soupsieve-2.6-py3-none-any.whl",
+                    "sha256": "e72c4ff06e4fb6e4b5a9f0f55fe6e81514581fca1515028625d0f299c602ccc9",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "soupsieve",
@@ -77,8 +77,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/cd/e5/af35f7ea75cf72f2cd079c95ee16797de7cd71f29ea7c68ae5ce7be1eda0/PyYAML-6.0.1.tar.gz",
-                    "sha256": "bfdf460b1736c775f2ba9f6a92bca30bc2095067b8a9d77876d1fad6cc3b4a43",
+                    "url": "https://files.pythonhosted.org/packages/54/ed/79a089b6be93607fa5cdaedf301d7dfb23af5f25c398d5ead2525b063e17/pyyaml-6.0.2.tar.gz",
+                    "sha256": "d584d9ec91ad65861cc08d42e834324ef890a082e591037abe114850ff7bbc3e",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "PyYAML"
@@ -99,7 +99,66 @@
                     "sha256": "fedfc67497f8aa2757756b5cf493759f245d321fb78914ce125b6d75daa89b5f",
                     "x-checker-data": {
                         "type": "pypi",
-                        "name": "marisa-trie"
+                        "name": "marisa_trie"
+                    }
+                }
+            ]
+        },
+        {
+            "name": "python3-delocate",
+            "buildsystem": "simple",
+            "build-commands": [
+                "pip3 install --verbose --exists-action=i --no-index --find-links=\"file://${PWD}\" --prefix=${FLATPAK_DEST} \"delocate\" --no-build-isolation"
+            ],
+            "sources": [
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/4d/3f/3bc3f1d83f6e4a7fcb834d3720544ca597590425be5ba9db032b2bf322a2/altgraph-0.17.4-py2.py3-none-any.whl",
+                    "sha256": "642743b4750de17e655e6711601b077bc6598dbfa3ba5fa2b2a35ce12b508dff",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "altgraph",
+                        "packagetype": "bdist_wheel"
+                    }
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/bf/4a/aa78a0333ce108aa722a6b8f449dfae55b12ed180e98721a90e571896dbd/delocate-0.12.0-py3-none-any.whl",
+                    "sha256": "0da599c7561dcca2835149eaa4733e85408d71f249c6c4c43c3cb16cedb43a09",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "delocate",
+                        "packagetype": "bdist_wheel"
+                    }
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/d1/5d/c059c180c84f7962db0aeae7c3b9303ed1d73d76f2bfbc32bc231c8be314/macholib-1.16.3-py2.py3-none-any.whl",
+                    "sha256": "0e315d7583d38b8c77e815b1ecbdbf504a8258d8b3e17b61165c6feb60d18f2c",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "macholib",
+                        "packagetype": "bdist_wheel"
+                    }
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/08/aa/cc0199a5f0ad350994d660967a8efb233fe0416e4639146c089643407ce6/packaging-24.1-py3-none-any.whl",
+                    "sha256": "5b8f2217dbdbd2f7f384c41c628544e6d52f2d0f53c6d0c3ea61aa5d1d7ff124",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "packaging",
+                        "packagetype": "bdist_wheel"
+                    }
+                },
+                {
+                    "type": "file",
+                    "url": "https://files.pythonhosted.org/packages/26/9f/ad63fc0248c5379346306f8668cda6e2e2e9c95e01216d2b8ffd9ff037d0/typing_extensions-4.12.2-py3-none-any.whl",
+                    "sha256": "04e5ca0351e0f3f85c6853954072df659d0d13fac324d0072316b67d7794700d",
+                    "x-checker-data": {
+                        "type": "pypi",
+                        "name": "typing_extensions",
+                        "packagetype": "bdist_wheel"
                     }
                 }
             ]
@@ -119,8 +178,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/ba/4e/cba68304797819e1a9da6773750ab3a236ba5a03b30b9374462b1a2fd9d2/libzim-3.4.0.tar.gz",
-                    "sha256": "c363de9d0340e657c8ec84088a199e189aeeae202ad81ffce3028285164202af",
+                    "url": "https://files.pythonhosted.org/packages/96/49/c8ef0c88795bfae9e90954baf52198c90a169e84feb6a67409cbdc1fea2d/libzim-3.5.0.tar.gz",
+                    "sha256": "1ba1ad02fffe5d28958fd7f27db50b6bb34fb19f294c26fba18a72191c375527",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "libzim"
