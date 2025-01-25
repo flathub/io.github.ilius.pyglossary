@@ -243,8 +243,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/a9/6a/fd08d94654f7e67c52ca30523a178b3f8ccc4237fce4be90d39c938a831a/prompt_toolkit-3.0.48-py3-none-any.whl",
-                    "sha256": "f49a827f90062e411f1ce1f854f2aedb3c23353244f8108b89283587397ac10e",
+                    "url": "https://files.pythonhosted.org/packages/e4/ea/d836f008d33151c7a1f62caf3d8dd782e4d15f6a43897f64480c2b8de2ad/prompt_toolkit-3.0.50-py3-none-any.whl",
+                    "sha256": "9b6427eb19e479d98acff65196a307c555eb567989e6d88ebbb1b509d9779198",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "prompt_toolkit",
