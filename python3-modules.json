@@ -30,8 +30,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/b1/fe/e8c672695b37eecc5cbf43e1d0638d88d66ba3a44c4d321c796f4e59167f/beautifulsoup4-4.12.3-py3-none-any.whl",
-                    "sha256": "b80878c9f40111313e55da8ba20bdba06d8fa3969fc68304167741bbf9e082ed",
+                    "url": "https://files.pythonhosted.org/packages/f9/49/6abb616eb3cbab6a7cca303dc02fdf3836de2e0b834bf966a7f5271a34d8/beautifulsoup4-4.13.3-py3-none-any.whl",
+                    "sha256": "99045d7d3f08f91f0d656bc9b7efbae189426cd913d830294a15eefa0ea4df16",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "beautifulsoup4",
@@ -123,8 +123,8 @@
                 },
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/bf/4a/aa78a0333ce108aa722a6b8f449dfae55b12ed180e98721a90e571896dbd/delocate-0.12.0-py3-none-any.whl",
-                    "sha256": "0da599c7561dcca2835149eaa4733e85408d71f249c6c4c43c3cb16cedb43a09",
+                    "url": "https://files.pythonhosted.org/packages/2b/dd/437e601fa9d2b6bf8507256daf52196a226c3b340261f4cde8fac8e853ea/delocate-0.13.0-py3-none-any.whl",
+                    "sha256": "11f7596f88984c33f76b27fe2eea7637d1ce369a9e0b6737bbc706b6426e862c",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "delocate",
