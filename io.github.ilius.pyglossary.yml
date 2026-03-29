@@ -1,6 +1,6 @@
 app-id: io.github.ilius.pyglossary
 runtime: org.gnome.Platform
-runtime-version: '47'
+runtime-version: '50'
 sdk: org.gnome.Sdk
 command: pyglossary
 
@@ -10,25 +10,16 @@ finish-args:
   - --share=ipc
   - --talk-name=org.gtk.vfs.*
   - --filesystem=xdg-run/gvfsd
-
+cleanup:
+  - /include
+  - /lib/cmake
+  - /lib/pkgconfig
+  - /share/aclocal
+  - /share/doc
+  - /share/man
+  - '*.la'
+  - '*.a'
 modules:
-  - name: lzo
-    config-opts:
-      - --enable-shared
-      - --disable-static
-    cleanup:
-      - /include
-      - /share/doc
-      - '*.la'
-      - /lib/*.so
-    sources:
-      - type: archive
-        url: https://www.oberhumer.com/opensource/lzo/download/lzo-2.10.tar.gz
-        sha256: c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072
-        x-checker-data:
-          type: anitya
-          project-id: 1868
-          url-template: https://www.oberhumer.com/opensource/lzo/download/lzo-$version.tar.gz
 
   - name: xapian-core
     config-opts:
@@ -38,8 +29,8 @@ modules:
       - --disable-documentation
     sources:
       - type: archive
-        sha256: bcbc99cfbf16080119c2571fc296794f539bd542ca3926f17c2999600830ab61
-        url: https://oligarchy.co.uk/xapian/1.4.27/xapian-core-1.4.27.tar.xz
+        sha256: 6cea3f49952a47224439a40bdb3608f928d121ad8721b9921cc42802d548ecf8
+        url: https://oligarchy.co.uk/xapian/2.0.0/xapian-core-2.0.0.tar.xz
         x-checker-data:
           type: anitya
           project-id: 15919
@@ -53,37 +44,35 @@ modules:
       - -Dtest_data_dir=none
     cleanup:
       - /bin
-      - /include
-      - /lib/pkgconfig
     sources:
       - type: git
         url: https://github.com/openzim/libzim.git
-        tag: 9.2.3
-        commit: 398a3c25059ee0ec7e2987d6af336d67dd681ba1
+        tag: 9.5.1
+        commit: 0f16c3cec3e86a42dbd5f6e0608f9c97412969e5
         x-checker-data:
           type: anitya
           project-id: 20193
           tag-template: $version
+
+  # flatpak_pip_generator --runtime='org.gnome.Sdk//50' --checker-data --requirements-file='requirements.txt' -o python3-modules
+  - python3-six.json
+  - python3-modules.json
 
   - name: pyglossary
     buildsystem: simple
     build-commands:
       - python3 setup.py build
       - python3 setup.py install "--prefix=${FLATPAK_DEST}"
-
       - desktop-file-edit --set-key=Exec --set-value="pyglossary --ui=gtk %U" --set-icon=${FLATPAK_ID}
         pkg/pyglossary.desktop
       - install -Dm644 pkg/pyglossary.desktop ${FLATPAK_DEST}/share/applications/${FLATPAK_ID}.desktop
       - install -Dm644 io.github.ilius.pyglossary.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
       - install -Dm644 res/pyglossary.svg ${FLATPAK_DEST}/share/icons/hicolor/scalable/apps/${FLATPAK_ID}.svg
-    modules:
-      # flatpak-pip-generator --runtime org.gnome.Sdk//46 --checker-data lxml beautifulsoup4 PyICU PyYAML marisa-trie libzim python-lzo html5li delocate prompt-toolkit
-      - python3-modules.json
     sources:
       - type: git
         url: https://github.com/ilius/pyglossary.git
-        tag: 5.0.7
-        commit: 9344a8f03a31c0f5898035dc34b47a38642dfb99
+        tag: 5.3.0
+        commit: 71475a2225e1e65ba9e21b43de34db8b3c3179a4
         x-checker-data:
           is-main-source: true
           type: anitya

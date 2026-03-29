@@ -3,9 +3,11 @@
   <id>io.github.ilius.pyglossary</id>
 
   <name>PyGlossary</name>
-  <summary>A tool for converting dictionary files aka glossaries.</summary>
+  <summary>A tool for converting dictionary files aka glossaries</summary>
 
-  <developer_name>Saeed Rasooli</developer_name>
+  <developer id="io.github.ilius">
+    <name>Saeed Rasooli</name>
+  </developer>
 
   <project_license>GPL-3.0</project_license>
   <metadata_license>CC0-1.0</metadata_license>
@@ -23,6 +25,7 @@
 
   <url type="homepage">https://github.com/ilius/pyglossary</url>
   <url type="bugtracker">https://github.com/ilius/pyglossary/issues/</url>
+  <url type="vcs-browser">https://github.com/ilius/pyglossary</url>
 
   <content_rating type="oars-1.1"/>
 
@@ -34,30 +37,15 @@
   </screenshots>
 
   <releases>
-    <release version="5.0.7" date="2025-01-25">
-      <description></description>
-    </release>
-    <release version="5.0.6" date="2025-01-12">
-      <description/>
-    </release>
-    <release version="5.0.4" date="2025-01-05">
-      <description/>
-    </release>
-    <release version="5.0.3" date="2024-12-30">
-      <description/>
-    </release>
-    <release version="5.0.1" date="2024-12-19">
-      <description/>
-    </release>
-    <release version="5.0.0" date="2024-12-14">
-      <description/>
-    </release>
-    <release version="4.7.1" date="2024-09-23">
-      <description/>
-    </release>
-    <release version="4.7.0" date="2024-06-18">
-      <description/>
-    </release>
+    <release version="5.3.0" date="2026-03-29"/>
+    <release version="5.0.7" date="2025-01-25"/>
+    <release version="5.0.6" date="2025-01-12"/>
+    <release version="5.0.4" date="2025-01-05"/>
+    <release version="5.0.3" date="2024-12-30"/>
+    <release version="5.0.1" date="2024-12-19"/>
+    <release version="5.0.0" date="2024-12-14"/>
+    <release version="4.7.1" date="2024-09-23"/>
+    <release version="4.7.0" date="2024-06-18"/>
     <release version="4.6.1" date="2023-03-10"/>
     <release version="4.6.0" date="2023-03-07"/>
     <release version="4.5.0" date="2022-02-05"/>
