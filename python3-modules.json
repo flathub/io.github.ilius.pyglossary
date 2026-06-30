@@ -178,8 +178,8 @@
             "sources": [
                 {
                     "type": "file",
-                    "url": "https://files.pythonhosted.org/packages/78/f6/11e18f0dc92a518b2e88c970a480e0832fc3b44efdb2bb95de5c1ea7e226/libzim-3.6.0.tar.gz",
-                    "sha256": "4dfc3a73e9e3c6e8f60a3b134f27069d74e96c4949c5aa20bb2ba994b00120be",
+                    "url": "https://files.pythonhosted.org/packages/14/3c/94a9860bfefcac10dcbc40c3ba3907b23ec200b51bd2d65138fed8c954be/libzim-3.10.0.tar.gz",
+                    "sha256": "c8dce5554cbf107b6482db440f9f0889201363c477a68b7c336ffa63bdcdd24a",
                     "x-checker-data": {
                         "type": "pypi",
                         "name": "libzim"

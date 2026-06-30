@@ -58,8 +58,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/openzim/libzim.git
-        tag: 9.2.3
-        commit: 398a3c25059ee0ec7e2987d6af336d67dd681ba1
+        tag: 9.8.0
+        commit: 9f9ae88149ad057f5b9233e33ddc5f0d38a3adb9
         x-checker-data:
           type: anitya
           project-id: 20193
