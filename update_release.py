@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
-"""Update the Flatpak manifest and metainfo to the latest PyGlossary release."""
+"""Create a pull request that updates PyGlossary to the latest release."""
 
 import argparse
 import json
 import os
 import re
+import subprocess
 import urllib.error
 import urllib.parse
 import urllib.request
+import webbrowser
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -99,16 +101,76 @@ def update_metainfo_text(text, version, date):
     return new_text, True
 
 
-def update_file(path, transform):
-    old_text = path.read_text()
-    new_text, changed = transform(old_text)
-    return new_text, changed
+def run_git(*args, check=True):
+    result = subprocess.run(
+        ["git", *args], cwd=ROOT, text=True, capture_output=True
+    )
+    if check and result.returncode != 0:
+        detail = result.stderr.strip() or result.stdout.strip()
+        raise SystemExit(f"git {' '.join(args)} failed:\n{detail}")
+    return result
+
+
+def current_branch():
+    return run_git("rev-parse", "--abbrev-ref", "HEAD").stdout.strip()
+
+
+def branch_exists(branch):
+    result = run_git(
+        "show-ref", "--verify", "--quiet", f"refs/heads/{branch}", check=False
+    )
+    return result.returncode == 0
+
+
+def ensure_clean():
+    status = run_git("status", "--porcelain").stdout.strip()
+    if status:
+        raise SystemExit(f"working tree is not clean:\n{status}")
+
+
+def git_path(path):
+    try:
+        return str(path.resolve().relative_to(ROOT))
+    except ValueError:
+        return str(path.resolve())
+
+
+def remote_base_url(remote):
+    url = run_git("remote", "get-url", remote).stdout.strip()
+    match = re.match(r"^git@([^:]+):(.+?)(?:\.git)?$", url)
+    if match:
+        host, path = match.groups()
+        return f"https://{host}/{path}"
+    match = re.match(r"^ssh://git@([^/]+)/(.+?)(?:\.git)?$", url)
+    if match:
+        host, path = match.groups()
+        return f"https://{host}/{path}"
+    match = re.match(r"^https?://([^/]+)/(.+?)(?:\.git)?$", url)
+    if match:
+        host, path = match.groups()
+        return f"https://{host}/{path}"
+    raise SystemExit(f"could not derive a web URL from remote {remote!r}: {url}")
+
+
+def pull_request_url(remote, branch):
+    base = remote_base_url(remote)
+    return f"{base}/pull/new/{urllib.parse.quote(branch, safe='')}"
+
+
+def open_in_browser(url):
+    try:
+        opened = webbrowser.open(url)
+    except Exception:
+        opened = False
+    if not opened:
+        print(f"open this URL to create the pull request: {url}")
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(
-        description="Update the PyGlossary Flatpak manifest and metainfo "
-        "to the latest upstream release."
+        description="Create a branch that updates the PyGlossary Flatpak "
+        "manifest and metainfo to the latest upstream release, commit it, "
+        "push it, and open the pull request page."
     )
     parser.add_argument(
         "--manifest", type=Path, default=DEFAULT_MANIFEST, help="manifest path"
@@ -119,6 +181,17 @@ def main(argv=None):
     parser.add_argument(
         "--tag", help="release tag to use instead of the latest release"
     )
+    parser.add_argument("--branch", help="branch name (default: release-<tag>)")
+    parser.add_argument("--base", help="base branch or commit to branch from")
+    parser.add_argument("--remote", default="origin", help="git remote to push to")
+    parser.add_argument(
+        "--no-push", action="store_true", help="commit locally without pushing"
+    )
+    parser.add_argument(
+        "--no-browser",
+        action="store_true",
+        help="print the pull request URL instead of opening it",
+    )
     parser.add_argument(
         "--dry-run", action="store_true", help="show changes without writing"
     )
@@ -128,17 +201,16 @@ def main(argv=None):
     commit = resolve_commit(tag)
     print(f"latest release: {tag} ({date}) commit {commit}")
 
-    manifest_text, manifest_changed = update_file(
-        args.manifest, lambda text: update_manifest_text(text, tag, commit)
+    manifest_text, manifest_changed = update_manifest_text(
+        args.manifest.read_text(), tag, commit
     )
-    metainfo_text, metainfo_changed = update_file(
-        args.metainfo, lambda text: update_metainfo_text(text, tag, date)
+    metainfo_text, metainfo_changed = update_metainfo_text(
+        args.metainfo.read_text(), tag, date
     )
 
-    if not manifest_changed:
-        print(f"{args.manifest.name}: already up to date")
-    if not metainfo_changed:
-        print(f"{args.metainfo.name}: already lists {tag}")
+    if not manifest_changed and not metainfo_changed:
+        print(f"already up to date at {tag}")
+        return 0
 
     if args.dry_run:
         if manifest_changed:
@@ -147,12 +219,46 @@ def main(argv=None):
             print(f"would add release {tag} ({date}) to {args.metainfo.name}")
         return 0
 
+    ensure_clean()
+    branch = args.branch or f"release-{tag}"
+    if branch_exists(branch):
+        raise SystemExit(f"branch {branch!r} already exists")
+
+    if args.base:
+        run_git("checkout", "-b", branch, args.base)
+    else:
+        run_git("checkout", "-b", branch)
+
     if manifest_changed:
         args.manifest.write_text(manifest_text)
-        print(f"updated {args.manifest.name}")
     if metainfo_changed:
         args.metainfo.write_text(metainfo_text)
-        print(f"updated {args.metainfo.name}")
+
+    paths = [
+        git_path(path)
+        for path, changed in (
+            (args.manifest, manifest_changed),
+            (args.metainfo, metainfo_changed),
+        )
+        if changed
+    ]
+    run_git("add", *paths)
+    run_git("commit", "-m", f"Release {tag}")
+    print(f"committed release {tag} on branch {branch}")
+
+    pr_url = None
+    if not args.no_push:
+        run_git("push", "-u", args.remote, branch)
+        print(f"pushed {branch} to {args.remote}")
+
+    if not args.no_push or not args.no_browser:
+        pr_url = pull_request_url(args.remote, branch)
+
+    if args.no_browser:
+        if pr_url:
+            print(pr_url)
+    else:
+        open_in_browser(pr_url)
 
     return 0
 
