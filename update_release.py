@@ -2,65 +2,94 @@
 """Create a pull request that updates PyGlossary to the latest release."""
 
 import argparse
-import json
-import os
 import re
 import subprocess
 import urllib.error
 import urllib.parse
 import urllib.request
 import webbrowser
+import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 
 REPO = "ilius/pyglossary"
-API = "https://api.github.com"
+ATOM_URL = f"https://github.com/{REPO}/releases.atom"
+ATOM = "{http://www.w3.org/2005/Atom}"
 ROOT = Path(__file__).resolve().parent
 DEFAULT_MANIFEST = ROOT / "io.github.ilius.pyglossary.yml"
 DEFAULT_METAINFO = ROOT / "io.github.ilius.pyglossary.metainfo.xml"
 
 
-def fetch_json(url):
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "User-Agent": "pyglossary-flathub-release-updater",
-    }
-    token = os.environ.get("GITHUB_TOKEN")
-    if token:
-        headers["Authorization"] = f"Bearer {token}"
-    request = urllib.request.Request(url, headers=headers)
+def fetch_text(url):
+    request = urllib.request.Request(
+        url, headers={"User-Agent": "pyglossary-flathub-release-updater"}
+    )
     try:
         with urllib.request.urlopen(request) as response:
-            return json.load(response)
+            return response.read().decode("utf-8", "replace")
     except urllib.error.HTTPError as error:
-        message = f"GitHub API request failed: {error.code} {error.reason}"
-        if error.code == 403:
-            message += " (rate limit; set GITHUB_TOKEN to authenticate)"
-        raise SystemExit(message) from error
+        raise SystemExit(
+            f"request to {url} failed: {error.code} {error.reason}"
+        ) from error
+
+
+def release_date(page_url):
+    text = fetch_text(page_url)
+    match = re.search(r'datetime="(\d{4}-\d{2}-\d{2})T', text)
+    return match.group(1) if match else None
 
 
 def release_info(tag=None):
     if tag:
-        url = f"{API}/repos/{REPO}/releases/tags/{urllib.parse.quote(tag, safe='')}"
+        page_url = (
+            f"https://github.com/{REPO}/releases/tag/"
+            f"{urllib.parse.quote(tag, safe='')}"
+        )
+        updated = ""
     else:
-        url = f"{API}/repos/{REPO}/releases/latest"
-    release = fetch_json(url)
-    tag = release["tag_name"]
-    date = (release.get("published_at") or release.get("created_at") or "")[:10]
+        root = ET.fromstring(fetch_text(ATOM_URL))
+        entry = root.find(f"{ATOM}entry")
+        if entry is None:
+            raise SystemExit("no releases found in atom feed")
+        tag = (entry.findtext(f"{ATOM}title") or "").strip()
+        updated = entry.findtext(f"{ATOM}updated") or ""
+        link = entry.find(f"{ATOM}link")
+        page_url = link.get("href") if link is not None else ""
+        if not tag or not page_url:
+            raise SystemExit("could not parse the latest release from atom feed")
+
+    date = release_date(page_url)
+    if not date and updated:
+        date = updated[:10]
     if not date:
         date = datetime.now(timezone.utc).strftime("%Y-%m-%d")
     return tag, date
 
 
 def resolve_commit(tag):
-    ref = fetch_json(
-        f"{API}/repos/{REPO}/git/ref/tags/{urllib.parse.quote(tag, safe='')}"
+    result = subprocess.run(
+        [
+            "git",
+            "ls-remote",
+            f"https://github.com/{REPO}.git",
+            f"refs/tags/{tag}",
+            f"refs/tags/{tag}^{{}}",
+        ],
+        text=True,
+        capture_output=True,
     )
-    obj = ref["object"]
-    if obj["type"] == "tag":
-        tag_obj = fetch_json(obj["url"])
-        return tag_obj["object"]["sha"]
-    return obj["sha"]
+    if result.returncode != 0:
+        detail = result.stderr.strip() or result.stdout.strip()
+        raise SystemExit(f"git ls-remote failed:\n{detail}")
+
+    refs = {}
+    for line in result.stdout.splitlines():
+        sha, _, ref = line.partition("\t")
+        refs[ref] = sha
+    commit = refs.get(f"refs/tags/{tag}^{{}}") or refs.get(f"refs/tags/{tag}")
+    if not commit:
+        raise SystemExit(f"tag {tag!r} not found in {REPO}")
+    return commit
 
 
 def update_manifest_text(text, tag, commit):
