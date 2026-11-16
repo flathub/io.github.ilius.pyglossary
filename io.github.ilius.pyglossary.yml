@@ -82,8 +82,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/ilius/pyglossary.git
-        tag: 5.4.2
-        commit: 1b22233895a1e3616bd19410619f73f6941db155
+        tag: 5.5.0
+        commit: 985f877c095a95cc85de106e0cfd893ca0639a8e
         x-checker-data:
           is-main-source: true
           type: anitya
